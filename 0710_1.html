@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>반응형</title>
+    </head>
+    <body>
+        <style>
+            * {
+                margin: 0px;
+            }
+            main {
+                text-align: center;
+            }
+            .contents {
+                display: inline-block;
+                width: 90%;
+                height: 50vw;
+                background: linear-gradient(to bottom,pink,white);
+            }
+            .colum {
+                display: inline-flex;
+            }
+            h1 {
+                font-size: 10vw;
+            }
+            .box {
+                width: 20vw;
+                height: 20vw;
+                margin: 1vw;
+            }
+            
+            @media (max-width:600px) {
+                .contents {
+                    height: 130vw;
+                }
+                .colum {
+                    display: inline-block;
+                }
+                .box {
+                    width: 30vw;
+                    height: 30vw;
+                }
+            }
+        </style>
+        <main>
+            <div class="contents">
+                <h1>Hello</h1>
+                <div class="colum">
+                    <div class="box" style="background-color : red"></div>
+                    <div class="box" style="background-color : blue"></div>
+                    <div class="box" style="background-color : yellow"></div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,3 +1,32 @@
-﻿1>------ Build started: Project: cs, Configuration: Debug Any CPU ------
-1>  cs -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\cs\cs\bin\Debug\cs.exe
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cs
+{
+    class Person
+    {
+        public string _name;
+
+        public Person(string name)
+        {
+            _name = name;
+            Console.WriteLine("ctor 실행");
+        }
+        static Person()
+        {
+            Console.WriteLine("cctor 실행");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person person1 = new Person("");
+            Console.WriteLine("-----------");
+            Person person2 = new Person("");
+        }
+    }
+}

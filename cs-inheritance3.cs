@@ -1,4 +1,45 @@
-﻿1>------ Build started: Project: cs, Configuration: Debug Any CPU ------
-1>D:\github\study\cs-inheritance2.cs(18,14,18,24): warning CS0649: Field 'Notebook.fingerScan' is never assigned to, and will always have its default value false
-1>  cs -> C:\Users\dsm2017\Documents\Visual Studio 2017\Projects\cs\cs\bin\Debug\cs.exe
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cs
+{
+    public class Computer
+    {
+        protected bool powerOn;
+        public void Boot() { }
+        public void Shutdown() { }
+        public void Reset() { }
+    }
+    public class Notebook : Computer
+    {
+        bool fingerScan;
+        public bool HasFingerScanDevice() { return fingerScan; }
+
+        public void CloseLid()
+        {
+            if(powerOn==true)
+            {
+                Shutdown();
+            }
+        }
+    }
+    public class DeviceManager
+    {
+        public void TurnOff(Computer device)
+        {
+            device.Shutdown();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Notebook noteBook = new Notebook();
+            DeviceManager manager = new DeviceManager();
+            manager.TurnOff(noteBook);
+        }
+    }
+}

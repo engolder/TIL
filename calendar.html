@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디데이 계산</title>
+    <script>
+        var iDate;
+        var countDownDate;
+
+        function calc() {
+            iDate = document.getElementById("pdate").value;
+            countDownDate = new Date(iDate).getTime();
+
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60) - 9);
+            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("d-day").innerHTML = "디데이까지 "+ d + "일" + h + "시간" + m +"분" + s + "초 남았습니다";
+            setTimeout("calc()",1000);
+
+        }
+    </script>
+</head>
+<body>
+    <input type="date" id="pdate">
+    <input type="button" value="계산" onclick="calc();">
+    <div id="d-day"></div>
+</body>
+</html>

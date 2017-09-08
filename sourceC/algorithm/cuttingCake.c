@@ -12,5 +12,5 @@ int main(void) {
 		if(i==c||i==d) cnt++; //a와 b사이에 c,d가 있다면 카운트 + 
 	}
 	if(cnt==1) printf("cross");
-	else printf("not cross");
+	else printf("not crosss");
 }

@@ -43,24 +43,6 @@ public class RealTimeSerchWords {
             }
         }
         
-        // nate
-        /*
-        document = Jsoup.connect("http://www.nate.com/?f=autorefresh").get();
-        if (document != null) {
-        	
-            Elements elements = document.select(".kwd_list li");
-            
-            System.out.println("\n네이트");
-            System.out.println("===========================================");
-            
-            System.out.println(elements.size());
-            for (int i = 0; i < elements.size(); i++) {
-                System.out.print((i+1) + ". "); // rank
-                System.out.println(elements.get(i).html()); // word
-            }
-        }
-        */
-        
         // zum
         document = Jsoup.connect("http://zum.com/#!/home").get();
         if (document != null) {
@@ -76,6 +58,22 @@ public class RealTimeSerchWords {
                 System.out.println(elements.get(i).html()); // word
             }
         }
+        
+        // nate
+        /*
+        document = Jsoup.connect("https://search.daum.net/nate?thr=sbma&w=tot&q=").get();
+        if (document != null) {
+        	
+            Elements elements = document.select(".list_rank .keyword_rank a");
+            
+            System.out.println("\n네이트");
+            System.out.println("===========================================");
+            
+            for (int i = 0; i < elements.size(); i++) {
+                System.out.print((i+1) + ". "); // rank
+                System.out.println(elements.get(i).html()); // word
+            }
+        }
+        */
 	}
-
 }

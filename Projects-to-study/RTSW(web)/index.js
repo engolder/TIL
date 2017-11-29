@@ -1,42 +1,73 @@
-let request = require('request');
-let express = require('express');
-let app = express();
+/* import moudles */
+const request = require("request");  
+const cheerio = require("cheerio");
+const express = require('express');
+const app = express();
 
-app.get('/', (req, res) => {
+/* middle ware */
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
-    request("http://www.naver.com/", (err, resd, body) => {
-        let bigFilter = /실시간[\s\S]*?ah_ico_open/g;
-        let smallFilter = /<div[\s\S]*?<\/div>/g;
-        let smallerFilter = /<span class="ah_k">[\s\S]*?<\/span>/g;
 
-        let result = smallFilter.exec(bigFilter.exec(body)[0])[0];
-        // console.log(result);
-        var d;
-        var x = [];
-        var resp = "";
+/* parsing */
 
-        while ((d = smallerFilter.exec(result)) !== null) {
-            x.push(d[0]);
+let urlNaver = "https://www.naver.com/";
+let jsonNaver = [];
+let urlDaum = "https://www.daum.net/";
+let jsonDaum = [];
+let urlZum = "http://zum.com/";
+let jsonZum = [];
+
+    // naver
+    request(urlNaver, function(err, response, body) {  
+        if(err) {
+            console.log();
+        } else {
+            let $ = cheerio.load(body);
+            let data = $("ul.ah_l[data-list] li.ah_item");
+            data.each(function() {
+                let searchWord = $(this).find("span.ah_k").text();
+                jsonNaver.push({searchWord : searchWord});
+            });
         }
-
-        for (var i in x) {
-            resp += x[i] + '<br />\n';
-        }
-        res.write(`
-        <!DOCTYPE HTML>
-        <html>
-            <head>
-            <meta charset="utf-8" >
-                <title> Naver 실시간 검색어 </title>
-            </head>
-            <body>\n`
-            + resp +
-            "</body> </html>");
-        
-        res.end();
     });
+
+    // daum
+    request(urlDaum, function(err, response, body) {  
+        if(err) {
+            console.log();
+        } else {
+            let $ = cheerio.load(body);
+            let data = $("div.realtime_part > ol.list_hotissue.issue_row li");
+            data.each(function() {
+                let searchWord = $(this).find("a.link_issue[tabindex]").text();
+                jsonDaum.push({searchWord : searchWord});
+            });
+        }
+    });
+
+    // zum
+    request(urlZum, function(err, response, body) {  
+        if(err) {
+            console.log();
+        } else {
+            let $ = cheerio.load(body);
+            let data = $("li.d_rank");
+            data.each(function() {
+                let searchWord = $(this).find("a.d_btn_keyword.d_ready").text();
+                jsonZum.push({searchWord : searchWord});
+            });
+        }
+    });
+
+/* router */
+app.get('/',function(req,res){
+    // res.render('index', JSON.stringify(jsonNaver));
 });
 
-app.listen(8080, () => {
-    console.log("Server opened at http://localhost:8080/");
+
+/* Open server */
+let server = app.listen(3000, function(){
+    console.log("Express server has started on port 3000");
 });

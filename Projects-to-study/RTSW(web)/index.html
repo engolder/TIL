@@ -1,5 +1,5 @@
 <html>
-    <head>
+<head>
     <title>RTSW ranks</title>
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -14,7 +14,7 @@
         
         .container {
             text-align: center;
-            width: 900px;
+            width: 800px;
             margin: 5% auto;
             padding: 40px;
         }
@@ -29,8 +29,8 @@
         
         .rankContainer {
             display: inline-block;
-            width: 250px;
-            margin: 10px;
+            width: 200px;
+            margin: 20px;
         }
         
         ul.rank {
@@ -40,8 +40,8 @@
         
         ul.rank li {
             border-top: 1px solid rgba(0, 0, 0, 0.31);
-            font-size: 14px;
-            line-height: 14px;
+            font-size: 15px;
+            line-height: 15px;
             padding: 8px;
             text-align: left;
         }
@@ -52,9 +52,9 @@
         
         .rankNumber {
             display: inline-block;
-            width: 10px;
-            height: 14px;
-            font-size: 14px;
+            width: 20px;
+            height: 15px;
+            font-size: 15px;
             text-align: center;
             margin-right: 10px;
         }
@@ -110,49 +110,46 @@
             color: #1B52ED;
         }
     </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>실시간검색어순위</h1>
-            <div class="rankContainer">
-                <span class="naver_logo"></span>
-                <ul class="rank rankNaver">
-                    <% for(let i=0; i<jsonNaver.length; i++){ %>
-                        <li class="rankNaverList">
-                            <span class="rankNumber">
-                                <%= i+1 %>
-                            </span>
-                            <%= jsonNaver[i].searchWord %>
-                        </li>
-                    <% } %>
-                </ul>
-            </div>
-            <div class="rankContainer">
-                <span class="daum_logo"></span>
-                <ul class="rank rankDaum">
-                    <% for(let i=0; i<jsonDaum.length; i++){ %>
-                        <li class="rankDaumList">
-                            <span class="rankNumber">
-                                <%= i+1 %>
-                            </span>
-                            <%= jsonDaum[i].searchWord %>
-                        </li>
-                    <% } %>
-                </ul>
-            </div>
-            <div class="rankContainer">
-                <span class="zum_logo"></span>
-                <ul class="rank rankZum">
-                    <% for(let i=0; i<jsonZum.length; i++){ %>
-                        <li class="rankZumList">
-                            <span class="rankNumber">
-                                <%= i+1 %>
-                            </span>
-                            <%= jsonZum[i].searchWord %>
-                        </li>
-                    <% } %>
-                </ul>
-            </div>
+</head>
+<body>
+    <div class="container">
+        <h1>실시간검색어순위</h1>
+        <div class="rankContainer">
+            <span class="naver_logo"></span>
+            <ul class="rank rankNaver">
+                <li class="rankNaverList"><span class="rankNumber">1</span>Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+                <li class="rankNaverList">Naver list</li>
+            </ul>
         </div>
-    </body>
-  </html>
+        <div class="rankContainer">
+            <span class="daum_logo"></span>
+            <ul class="rank rankDaum">
+                <li class="rankDaumList"><span class="rankNumber">1</span>Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+                <li class="rankDaumList">Daum list</li>
+            </ul>
+        </div>
+        <div class="rankContainer">
+            <span class="zum_logo"></span>
+            <ul class="rank rankZum">
+                <li class="rankZumList"><span class="rankNumber">1</span>Zum list</li>
+                <li class="rankZumList">Zum list</li>
+                <li class="rankZumList">Zum list</li>
+                <li class="rankZumList">Zum list</li>
+                <li class="rankZumList">Zum list</li>
+                <li class="rankZumList">Zum list</li>
+                <li class="rankZumList">Zum list</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

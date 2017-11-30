@@ -19,19 +19,18 @@ let jsonDaum = [];
 let urlZum = "http://zum.com/";
 let jsonZum = [];
 
-    // naver
-    request(urlNaver, function(err, response, body) {  
-        if(err) {
-            console.log();
-        } else {
-            let $ = cheerio.load(body);
-            let data = $("ul.ah_l[data-list] li.ah_item");
-            data.each(function() {
-                let searchWord = $(this).find("span.ah_k").text();
-                jsonNaver.push({searchWord : searchWord});
-            });
-        }
-    });
+// naver
+request(urlNaver, function(err, response, body) {  
+    if(err) {
+        console.log();
+    } else {
+        let $ = cheerio.load(body);
+        let data = $("ul.ah_l[data-list] li.ah_item");
+        data.each(function() {
+            let searchWord = $(this).find("span.ah_k").text();
+            jsonNaver.push({searchWord : searchWord});
+        });
+    }
 
     // daum
     request(urlDaum, function(err, response, body) {  
@@ -45,27 +44,27 @@ let jsonZum = [];
                 jsonDaum.push({searchWord : searchWord});
             });
         }
-    });
 
-    // zum
-    request(urlZum, function(err, response, body) {  
-        if(err) {
-            console.log();
-        } else {
-            let $ = cheerio.load(body);
-            let data = $("li.d_rank");
-            data.each(function() {
-                let searchWord = $(this).find("a.d_btn_keyword.d_ready").text();
-                jsonZum.push({searchWord : searchWord});
+        // zum
+        request(urlZum, function(err, response, body) {  
+            if(err) {
+                console.log();
+            } else {
+                let $ = cheerio.load(body);
+                let data = $("li.d_rank");
+                data.each(function() {
+                    let searchWord = $(this).find("a.d_btn_keyword.d_ready").text();
+                    jsonZum.push({searchWord : searchWord});
+                });
+            }
+            
+            /* router */
+            app.get('/',function(req,res){
+                res.render('index', {jsonNaver : jsonNaver,jsonDaum : jsonDaum, jsonZum : jsonZum});
             });
-        }
+        });
     });
-
-/* router */
-app.get('/',function(req,res){
-    // res.render('index', JSON.stringify(jsonNaver));
 });
-
 
 /* Open server */
 let server = app.listen(3000, function(){

@@ -1,15 +1,28 @@
 <html>
     <head>
     <title>RTSW ranks</title>
-      <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
       <ol>
-          <% for(let i=0; i<20; i++){ %>
+          <% for(let i=0; i<jsonNaver.length; i++){ %>
               <li>
-                  <!-- <%= searchWord[i] %> -->
+                  <%= jsonNaver[i].searchWord %>
               </li>
           <% } %>
       </ol>
+      <ol>
+            <% for(let i=0; i<jsonDaum.length; i++){ %>
+                <li>
+                    <%= jsonDaum[i].searchWord %>
+                </li>
+            <% } %>
+        </ol>
+        <ol>
+                <% for(let i=0; i<jsonZum.length; i++){ %>
+                    <li>
+                        <%= jsonZum[i].searchWord %>
+                    </li>
+                <% } %>
+            </ol>
     </body>
   </html>

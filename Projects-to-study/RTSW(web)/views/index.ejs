@@ -1,5 +1,6 @@
 <html>
     <head>
+    <meta charset="utp-8">
     <title>RTSW ranks</title>
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -15,8 +16,7 @@
         .container {
             text-align: center;
             width: 900px;
-            margin: 5% auto;
-            padding: 40px;
+            margin: 20px auto;
         }
         
         h1 {
@@ -26,10 +26,18 @@
             font-weight: 100;
             letter-spacing: 30px;
         }
+
+        #refreshTime {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: rgba(0, 0, 0, 0.41);
+            font-weight: 100;
+            letter-spacing: 12px;
+        }
         
         .rankContainer {
             display: inline-block;
-            width: 250px;
+            width: 200px;
             margin: 10px;
         }
         
@@ -40,9 +48,9 @@
         
         ul.rank li {
             border-top: 1px solid rgba(0, 0, 0, 0.31);
-            font-size: 14px;
-            line-height: 14px;
-            padding: 8px;
+            font-size: 12px;
+            line-height: 12px;
+            padding: 4px;
             text-align: left;
         }
         
@@ -53,8 +61,8 @@
         .rankNumber {
             display: inline-block;
             width: 10px;
-            height: 14px;
-            font-size: 14px;
+            height: 12px;
+            font-size: 12px;
             text-align: center;
             margin-right: 10px;
         }
@@ -109,11 +117,16 @@
         .rankDaum .rankNumber {
             color: #1B52ED;
         }
+
+        .rankNate {
+            border: 3px solid #E61F00;
+        }
     </style>
     </head>
     <body>
         <div class="container">
             <h1>실시간검색어순위</h1>
+            <h2 id="refreshTime"></h2>
             <div class="rankContainer">
                 <span class="naver_logo"></span>
                 <ul class="rank rankNaver">
@@ -154,5 +167,15 @@
                 </ul>
             </div>
         </div>
+
+        <!-- sciprt start -->
+        <script>
+            let refreshTime = document.getElementById("refreshTime");
+            let currentTime = new Date().toLocaleString('ko-KR');
+            refreshTime.innerHTML = currentTime;
+            setInterval(function(){
+                window.location.reload();
+            }, 5000);
+        </script>
     </body>
   </html>
